@@ -1,0 +1,40 @@
+# AOS 熔炉之心 2.0 · 启动盘使用说明
+
+## 这是什么
+这是 AOS 的"主线程"。每次启动 AOS、开始新对话、或恢复工作状态时，
+第一个执行的文件。它加载全部上下文，恢复所有资产状态，标定虚实。
+
+## 怎么用
+
+### 第一步：启动
+python aos_bootloader.py
+
+看到 AOS 状态全景 → 主线程已加载。
+
+### 第二步：生成 CAD 三维轴线图
+python build_dxf.py
+
+拿到 AOS_三维资产矩阵.dxf → 用 CAD 打开，三维旋转查看。
+
+### 第三步：更新资产
+编辑 assets.json → 改对应字段 → 重新跑 bootloader 和 build_dxf。
+
+### 第四步：每次对话开始
+告诉元宝："加载 AOS 启动盘当前状态。"
+元宝读 assets.json → 恢复全部上下文 → 从断点继续。
+
+## 规则
+1. 能写成文件并在环境中跑出结果的 = 实
+2. 不能的 = 虚
+3. 虚实参半的 = 拆开，实的部分先做
+4. 每验证一项，标记 verified: true
+5. 每次推进后更新 assets.json，不丢状态
+
+## 目录结构
+aos_cad_exporter/
+├── assets.json              ← 多维数据底座（主线程的核心）
+├── aos_bootloader.py        ← 启动盘入口
+├── build_dxf.py             ← Excel/CAD 三维轴线图生成器
+├── AOS_三维资产矩阵.dxf     ← 生成的 CAD 文件
+├── requirements.txt         ← 依赖
+└── README_启动盘.md         ← 本文件
