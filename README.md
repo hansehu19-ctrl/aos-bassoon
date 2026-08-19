@@ -298,3 +298,11 @@ AOS-BASSOON · 矛体系探真探针予系统 V1.0
 
 
 ------
+
+---
+
+## AOS 离线 Ubuntu 镜像资产准备
+
+仓库提供 `scripts/prepare_offline_ubuntu_image_assets.sh` 来执行一次性联网准备：创建 `/AOS/images/{base,templates,offline-packages}`，下载 Ubuntu 22.04 LTS Cloud qcow2 镜像，下载 AI 推理相关 Python wheel，并用 `dir2pi` 生成本地 PyPI `simple/` 索引。完成后可将 `/AOS/images` 复制到离线环境用于后续 `virt-customize` 等镜像定制流程。
+
+详见 [`docs/offline-image-assets.md`](docs/offline-image-assets.md)。
